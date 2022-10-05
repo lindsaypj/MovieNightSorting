@@ -40,6 +40,72 @@ public class Movie {
         this.year = year;
     }
 
+    ////   GETTER METHODS   ////
+
+    /**
+     * Title getter method
+     * @return title of the movie
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Genre getter method
+     * @return genre of movie
+     */
+    public String getGenre() {
+        return genre;
+    }
+
+    /**
+     * Studio getter method
+     * @return The primary studio where the movie was produced
+     */
+    public String getStudio() {
+        return studio;
+    }
+
+    /**
+     * Audience Score getter method
+     * @return Audience Score of the movie (percentage)
+     */
+    public int getAudienceScore() {
+        return audienceScore;
+    }
+
+    /**
+     * Profitability getter method
+     * @return profitability rating of the movie
+     */
+    public double getProfitability() {
+        return profitability;
+    }
+
+    /**
+     * Rotten Tomatoes getter method
+     * @return Rotten Tomatoes Score of the movie (percentage)
+     */
+    public int getRTScore() {
+        return rtScore;
+    }
+
+    /**
+     * Worldwide Gross profit getter method
+     * @return worldwide gross profit of the movie
+     */
+    public double getWorldGross() {
+        return worldGross;
+    }
+
+    /**
+     * Release year getter method
+     * @return release year of the movie
+     */
+    public int getYear() {
+        return year;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
