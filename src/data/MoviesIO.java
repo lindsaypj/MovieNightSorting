@@ -1,5 +1,7 @@
 package data;
 
+import comparators.FilmComparator;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -28,7 +30,6 @@ public class MoviesIO {
         this.movies = new ArrayList<>();
 
         // Try to parse data into movie objects
-        // Store movies in the Movies list
         try {
             // Create scanner to parse data
             Scanner movieScan = new Scanner(new File(filePath));
@@ -48,6 +49,9 @@ public class MoviesIO {
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        // Run default sort on the data by Title
+        movies.sort(new FilmComparator());
     }
 
     // Method to parse data in movie entry from file into a Movie Object
