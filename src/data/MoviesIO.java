@@ -33,6 +33,9 @@ public class MoviesIO {
             // Create scanner to parse data
             Scanner movieScan = new Scanner(new File(filePath));
 
+            // Remove/Ignore first line (column headers)
+            movieScan.nextLine();
+
             // Loop over all records (Entries are separated by line)
             while (movieScan.hasNextLine()) {
                 // Store next entry
@@ -44,11 +47,6 @@ public class MoviesIO {
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-
-        // Remove First entry from file (Column headers)
-        if (!movies.isEmpty()) {
-            movies.remove(0);
         }
     }
 
