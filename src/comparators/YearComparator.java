@@ -12,6 +12,6 @@ import java.util.Comparator;
 public class YearComparator implements Comparator<Movie> {
     @Override
     public int compare(Movie movie1, Movie movie2) {
-        return 0;
+        return movie1.getYear() - movie2.getYear();
     }
 }
