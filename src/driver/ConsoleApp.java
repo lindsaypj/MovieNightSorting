@@ -1,6 +1,7 @@
 package driver;
 
 import comparators.*;
+import data.HeapSort;
 import data.Movie;
 import data.MoviesIO;
 
@@ -52,28 +53,26 @@ public class ConsoleApp {
             printOptions();
 
             // Get their response
-            String option = userInput.nextLine();
-            switch (option) {
-                case "1": // Show all Movies
-                    printMovies(movies);
-                    break;
-                case "2": // Show a random movie
-                    printRandom(movies);
-                    break;
-                case "3": // Sort movies
+            switch (userInput.nextLine()) {
+                case "1" -> printMovies(movies); // Show all Movies
+                case "2" -> printRandom(movies); // Show a random movie
+                case "3" -> { // Resort movies
+                    // Display Movie sort options
+                    printSortOptions();
 
-                    break;
-                case "4": // Exit
-                    run = false;
-                    break;
-                default: // Input not recognised
+                    // Sort according to user choice
+                    sortMovies(movies, userInput.nextLine());
+                }
+                case "4" -> run = false; // Exit
+                default -> { // Input not recognised
                     System.out.println();
                     System.out.println("Option not recognised...");
+                }
             }
         }
     }
 
-    // Method to print the welcome message
+    // Function to print the welcome message
     private static void startMessage() {
         System.out.println("*******************************************");
         System.out.println("Welcome to the Movie Night Application ");
@@ -84,7 +83,7 @@ public class ConsoleApp {
         System.out.println("*******************************************");
     }
 
-    // Method to print the users primary program options
+    // Function to print the users primary program options
     private static void printOptions() {
         System.out.println();
         System.out.println("Pick from the following:");
@@ -94,7 +93,7 @@ public class ConsoleApp {
         System.out.println("4. Exit");
     }
 
-    // Method to print the movies in their current order
+    // Function to print the movies in their current order
     private static void printMovies(ArrayList<Movie> movies) {
         System.out.printf("\n%-30s %-12s %-25s %-12s %-14s %-20s %-25s %-5s \n",
                 "FILM", "GENRE", "STUDIO", "AUDIENCE", "PROFIT", "ROTTEN TOMATOES", "WORLDWIDE GROSS PROFIT", "YEAR");
@@ -105,13 +104,49 @@ public class ConsoleApp {
         }
     }
 
-    // Method to randomly select a movie and print it.
+    // Function to randomly select a movie and print it.
     private static void printRandom(ArrayList<Movie> movies) {
         // Get random movie
         ArrayList<Movie> randomMovie = new ArrayList<>();
-        randomMovie.add(movies.get((int)(Math.random() * movies.size())));
+        randomMovie.add(movies.get((int) (Math.random() * movies.size())));
 
         // Print random movie
         printMovies(randomMovie);
+    }
+
+    // Function to print the movie sorting options
+    private static void printSortOptions() {
+        System.out.println();
+        System.out.println("Enter a comparator:");
+        System.out.println("1. By Film");
+        System.out.println("2. By Genre");
+        System.out.println("3. By Studio");
+        System.out.println("4. By Audience Score");
+        System.out.println("4. By Profitability");
+        System.out.println("4. By Rotten Tomatoes Score");
+        System.out.println("4. By World Gross");
+        System.out.println("4. By Year");
+        System.out.println("9. CANCEL ");
+    }
+
+    // Function to sort the movies by given option, using a HeapSort
+    private static void sortMovies(ArrayList<Movie> movies, String option) {
+        HeapSort sorter = new HeapSort(movies);
+
+        switch(option) {
+            case "1" -> sorter.sort(FILM_COMPARATOR);
+            case "2" -> sorter.sort(GENRE_COMPARATOR);
+            case "3" -> sorter.sort(STUDIO_COMPARATOR);
+            case "4" -> sorter.sort(AUDIENCE_COMPARATOR);
+            case "5" -> sorter.sort(PROFIT_COMPARATOR);
+            case "6" -> sorter.sort(RT_COMPARATOR);
+            case "7" -> sorter.sort(WORLD_GROSS_COMPARATOR);
+            case "8" -> sorter.sort(YEAR_COMPARATOR);
+            case "9" -> {} // CANCEL
+            default -> { // Unrecognised Input
+                System.out.println("Option Not recognised...");
+                System.out.println();
+            }
+        }
     }
 }
