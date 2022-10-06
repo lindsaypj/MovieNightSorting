@@ -117,6 +117,6 @@ public class Movie {
                 ", rtScore=" + rtScore +
                 ", worldGross=" + worldGross +
                 ", year=" + year +
-                '}';
+                '}' + "\n";
     }
 }

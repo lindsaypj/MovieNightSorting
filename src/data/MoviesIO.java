@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class MoviesIO {
 
-    // Fields
+    // Instance Fields
     private String filePath;
     private ArrayList<Movie> movies;
 
@@ -31,27 +31,20 @@ public class MoviesIO {
 
         // Try to parse data into movie objects
         try {
-            // Create scanner to parse data
-            Scanner movieScan = new Scanner(new File(filePath));
-
-            // Remove/Ignore first line (column headers)
-            movieScan.nextLine();
+            Scanner movieScan = new Scanner(new File(filePath)); // Create scanner to parse data
+            movieScan.nextLine();                               // Remove/Ignore first line (column headers)
 
             // Loop over all records (Entries are separated by line)
             while (movieScan.hasNextLine()) {
-                // Store next entry
-                String movieEntry = movieScan.nextLine();
-
-                // Parse and store data in new Movie Object
-                movies.add(parse(movieEntry));
+                String movieEntry = movieScan.nextLine();   // Store next entry
+                movies.add(parse(movieEntry));             // Parse and store data in new Movie Object
             }
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        // Run default sort on the data by Title
-        movies.sort(new FilmComparator());
+        movies.sort(new FilmComparator()); // Run default sort on the data by Title
     }
 
     // Method to parse data in movie entry from file into a Movie Object

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * This object abstraction sorts an array using a Heap Sort algorithm.
+ * This object sorts an array using an in-place Heap Sort algorithm.
  * @author Patrick Lindsay
  * @version 1.0
  */
@@ -12,7 +12,6 @@ public class HeapSort {
     // Fields
     private ArrayList<Movie> movies;
     private int size;
-
 
     /**
      * Constructor to initialize a heap sort object
@@ -28,16 +27,14 @@ public class HeapSort {
      * @return ArrayList of movies sorted using the given comparator
      */
     public ArrayList<Movie> sort(Comparator<Movie> movieComparator) {
-        // Construct Heap using comparator
-        size = movies.size();
-        buildHeap(movieComparator);
+        size = movies.size();        // Initialize heap size to include all elements in the array
+        buildHeap(movieComparator); // Construct Heap using comparator
 
         // Remove elements from the heap and place into ordered partition
         for (int i = size - 1; i >= 0; i--) {
             remove(movieComparator);
         }
-        // Return sorted ArrayList
-        return movies;
+        return movies;        // Return sorted ArrayList
     }
 
     // Method to "Heapify" the given array (Or ArrayList)
@@ -55,14 +52,9 @@ public class HeapSort {
             throw new IllegalStateException("The Heap is empty!");
         }
 
-        // Move the value at the root to sorted position
-        swap(0, size - 1);
-
-        // Decrement size of partition
-        size--;
-
-        // Sink and adjust
-        sink(0, comparator);
+        swap(0, size - 1);     // Move the value at the root to sorted position
+        size--;               // Decrement size of partition
+        sink(0, comparator); // Sink and adjust
     }
 
     private void sink(int currentIndex, Comparator<Movie> comparator) {
@@ -74,17 +66,17 @@ public class HeapSort {
 
             // Compare the Left and Right children
             int rightLeftDifference;
-            if (rightChildIndex < size) {
+            if (rightChildIndex < size) { // Current Index has both left and right children
                 rightLeftDifference = comparator.compare(movies.get(rightChildIndex), movies.get(leftChildIndex));
             }
-            else {
+            else { // Current index only has left child
                 rightLeftDifference = -1;
             }
 
             // Determine the smallest child
             int smallestChildIndex = rightLeftDifference > 0 ? rightChildIndex : leftChildIndex;
 
-            // sink 1 level
+            // Sink 1 level (if applicable)
             if (comparator.compare(movies.get(currentIndex), movies.get(smallestChildIndex)) < 0) {
                 swap(currentIndex, smallestChildIndex);
             }
@@ -94,7 +86,7 @@ public class HeapSort {
         }
     }
 
-    // Swaps elements indices first and second in the heap array
+    // Swaps elements at indices first and second in the heap array
     private void swap(int firstIndex, int secondIndex) {
         Movie first = movies.get(firstIndex);
         movies.set(firstIndex, movies.get(secondIndex));

@@ -57,11 +57,8 @@ public class ConsoleApp {
                 case "1" -> printMovies(movies); // Show all Movies
                 case "2" -> printRandom(movies); // Show a random movie
                 case "3" -> { // Resort movies
-                    // Display Movie sort options
-                    printSortOptions();
-
-                    // Sort according to user choice
-                    sortMovies(movies, userInput.nextLine());
+                    printSortOptions(); // Display Movie sort options
+                    sortMovies(movies, userInput.nextLine()); // Sort according to user choice
                 }
                 case "4" -> run = false; // Exit
                 default -> { // Input not recognised
@@ -133,7 +130,7 @@ public class ConsoleApp {
     private static void sortMovies(ArrayList<Movie> movies, String option) {
         HeapSort sorter = new HeapSort(movies);
 
-        switch(option) {
+        switch(option) { // Sort By option
             case "1" -> sorter.sort(FILM_COMPARATOR);
             case "2" -> sorter.sort(GENRE_COMPARATOR);
             case "3" -> sorter.sort(STUDIO_COMPARATOR);
