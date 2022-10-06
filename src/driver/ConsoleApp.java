@@ -31,8 +31,7 @@ public class ConsoleApp {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-
-        // Start the program
+        // Start the program (display welcome)
         startMessage();
 
         // Get and parse Movie data
@@ -40,7 +39,7 @@ public class ConsoleApp {
 
         // Create scanner to get user responses
         Scanner userInput = null;
-        try {
+        try { // Encapsulate scanner to catch exceptions
             userInput = new Scanner(System.in);
         } catch (Exception e) {
             System.out.println("Error: " + e);
@@ -52,16 +51,16 @@ public class ConsoleApp {
             // Print options to the user
             printOptions();
 
-            // Get their response
+            // Get user response
             switch (userInput.nextLine()) {
-                case "1" -> printMovies(movies); // Show all Movies
+                case "1" -> printMovies(movies);  // Show all Movies
                 case "2" -> printRandom(movies); // Show a random movie
-                case "3" -> { // Resort movies
-                    printSortOptions(); // Display Movie sort options
+                case "3" -> {                   // Re-sort movies
+                    printSortOptions();                        // Display Movie sort options
                     sortMovies(movies, userInput.nextLine()); // Sort according to user choice
                 }
-                case "4" -> run = false; // Exit
-                default -> { // Input not recognised
+                case "4" -> run = false;    // Exit
+                default -> {               // Input not recognised
                     System.out.println();
                     System.out.println("Option not recognised...");
                 }
@@ -140,7 +139,7 @@ public class ConsoleApp {
             case "7" -> sorter.sort(WORLD_GROSS_COMPARATOR);
             case "8" -> sorter.sort(YEAR_COMPARATOR);
             case "9" -> {} // CANCEL
-            default -> { // Unrecognised Input
+            default -> {  // Unrecognised Input
                 System.out.println("Option Not recognised...");
                 System.out.println();
             }
