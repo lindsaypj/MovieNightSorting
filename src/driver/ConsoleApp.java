@@ -118,10 +118,10 @@ public class ConsoleApp {
         System.out.println("2. By Genre");
         System.out.println("3. By Studio");
         System.out.println("4. By Audience Score");
-        System.out.println("4. By Profitability");
-        System.out.println("4. By Rotten Tomatoes Score");
-        System.out.println("4. By World Gross");
-        System.out.println("4. By Year");
+        System.out.println("5. By Profitability");
+        System.out.println("6. By Rotten Tomatoes Score");
+        System.out.println("7. By World Gross");
+        System.out.println("8. By Year");
         System.out.println("9. CANCEL ");
     }
 
